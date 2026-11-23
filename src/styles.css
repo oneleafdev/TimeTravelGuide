@@ -408,11 +408,12 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
   .header-inner { min-height: 62px; }
   .brand { font-size: 17px; gap: 7px; }
   .brand-mark { width: 28px; height: 28px; }
-  .brand-mark svg, .nav-link svg, .nav-practice svg { display: none; }
+  .brand-mark svg { width: 16px; height: 16px; }
+  .nav-link svg, .nav-practice svg { display: none; }
   .main-nav { gap: 8px; }
   .nav-link, .nav-practice { font-size: 13px; }
   .nav-practice { padding-inline: 8px; min-height: 44px; box-shadow: 2px 2px var(--ink); }
-  .hero { min-height: calc(100svh - 64px); padding-block: 22px 63px; }
+  .hero { min-height: min(calc(100svh - 64px), 680px); padding-block: 22px 63px; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); box-shadow: 4px 4px var(--ink); }
   .hero-copy { padding: 25px 20px; }
   .hero-copy h1 { font-size: clamp(47px, 12vw, 76px); }
