@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Compass } from 'lucide-react';
 import { Link } from 'react-router';
-import { featuredPoem, poems } from '../poetry/model';
+import { featuredPoem, verifiedPoems } from '../poetry/model';
 import { poemPath, poetryPath } from '../poetry/paths';
 import { modules, poetryModule, siteTitle } from './model';
 
@@ -24,7 +24,8 @@ export function Home() {
               </div>
               <p className="hero-poem-title">{featuredPoem.title}</p>
               <div className="hero-verses">
-                {featuredPoem.lines.map((line) => <span key={line}>{line}</span>)}
+                {featuredPoem.lines.slice(0, 4).map((line, index) => <span key={index}>{line}</span>)}
+                {featuredPoem.lines.length > 4 && <span aria-hidden="true">⋯</span>}
               </div>
             </Link>
           </div>
@@ -47,7 +48,7 @@ export function Home() {
                       <ArrowUpRight size={24} aria-hidden="true" />
                     </span>
                     <div>
-                      <span className="volume-meta">{module.volume} · {poems.length} 首</span>
+                      <span className="volume-meta">{module.volume} · {verifiedPoems.length} 篇</span>
                       <h3>{module.title}</h3>
                     </div>
                   </Link>

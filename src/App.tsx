@@ -5,7 +5,7 @@ import { Home, MissingPage } from './features/library/Home';
 import { poetryModule, siteTitle } from './features/library/model';
 import { Directory } from './features/poetry/Directory';
 import { Reader } from './features/poetry/Reader';
-import { featuredPoem, findPoem, poems } from './features/poetry/model';
+import { featuredPoem, findPoem, verifiedPoems } from './features/poetry/model';
 import { poemPath, poetryPath } from './features/poetry/paths';
 import { useProgress } from './features/poetry/progress';
 
@@ -15,7 +15,8 @@ export function App() {
   const { pathname, search } = useLocation();
   const previousPath = useRef(pathname);
   const { memorized, toggleMemorized } = useProgress();
-  const practicePoem = poems.find((poem) => !memorized.has(poem.id)) ?? featuredPoem;
+  const practicePoem = !memorized.has(featuredPoem.id) ? featuredPoem
+    : verifiedPoems.find((poem) => !memorized.has(poem.id)) ?? featuredPoem;
   const section = pathname === '/' ? new URLSearchParams(search).get('section') : null;
   const viewTitle = pathname === '/'
     ? null
@@ -63,7 +64,7 @@ export function App() {
           </Link>
           <nav aria-label="主导航" className="main-nav">
             <NavLink className="nav-link" to={poetryPath}>
-              <BookOpen size={17} aria-hidden="true" /> 古诗目录
+              <BookOpen size={17} aria-hidden="true" /> 诗词目录
             </NavLink>
             <Link className="button nav-practice" to={poemPath(practicePoem.id, true)}>
               开始背诵 <ArrowUpRight size={17} aria-hidden="true" />

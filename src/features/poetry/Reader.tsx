@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Eye, EyeOff, Lightbulb } fr
 import { useState } from 'react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router';
 import { MissingPage } from '../library/Home';
-import { findPoem, poems } from './model';
+import { findPoem, hasNovelEvidence, pendingPoems, verifiedPoems } from './model';
 import type { Poem } from './model';
 import { poemPath, poetryPath } from './paths';
 
@@ -64,9 +64,11 @@ export function Reader({
   const poem = findPoem(poemId);
   if (!poem) return <MissingPage />;
 
-  const index = poems.indexOf(poem);
-  const previous = poems[index - 1];
-  const next = poems[index + 1];
+  const verified = hasNovelEvidence(poem);
+  const sequence = verified ? verifiedPoems : pendingPoems;
+  const index = sequence.indexOf(poem);
+  const previous = sequence[index - 1];
+  const next = sequence[index + 1];
   const learned = memorized.has(poem.id);
   const returnState = { directoryLocation };
 
@@ -74,7 +76,7 @@ export function Reader({
     <article className="wrap page reader">
       <nav className="reader-breadcrumb" aria-label="当前卷">
         <Link className="text-link" to={directoryLocation}><ArrowLeft size={18} /> 诗词目录</Link>
-        <span>{index + 1} / {poems.length}</span>
+        <span>{index + 1} / {sequence.length}</span>
       </nav>
 
       <div className="reader-grid">
@@ -101,10 +103,26 @@ export function Reader({
             </details>
           ) : (
             <>
-              <section className="note-block">
-                <h2>穿越情境</h2>
-                <p>{poem.scene}</p>
-              </section>
+              {verified ? (
+                <section className="note-block sources novel-uses">
+                  <h2>小说里怎么用</h2>
+                  <ul>
+                    {poem.novelUses.map(({ work, chapter, scene, url }) => (
+                      <li key={url}>
+                        <a href={url} target="_blank" rel="noreferrer">
+                          《{work}》{chapter} <ArrowUpRight size={16} aria-hidden="true" />
+                        </a>
+                        <p>{scene}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : (
+                <section className="note-block">
+                  <h2>学习情境</h2>
+                  <p>{poem.scene}</p>
+                </section>
+              )}
               <section className="note-block">
                 <h2>释义</h2>
                 <p>{poem.meaning}</p>

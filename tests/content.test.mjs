@@ -45,3 +45,23 @@ test('each poem has a named, directly linkable source', () => {
     }
   }
 });
+
+test('main catalogue requires distinct works and chapter links', () => {
+  const verified = poetry.poems.filter(({ novelUses }) => novelUses !== undefined);
+  assert.ok(verified.some(({ id }) => id === poetry.featuredPoemId));
+  for (const { id, novelUses } of verified) {
+    assert.ok(novelUses.length >= 2, `${id} requires at least two works`);
+    const workNames = new Set();
+    const chapterLinks = new Set();
+    for (const use of novelUses) {
+      for (const field of ['work', 'chapter', 'scene', 'url']) {
+        assert.ok(use[field]?.trim(), `${id} requires a novel-use ${field}`);
+      }
+      workNames.add(use.work.trim());
+      chapterLinks.add(new URL(use.url).href);
+      assert.equal(new URL(use.url).protocol, 'https:');
+    }
+    assert.equal(workNames.size, novelUses.length, `${id} repeats a work`);
+    assert.equal(chapterLinks.size, novelUses.length, `${id} repeats a chapter link`);
+  }
+});

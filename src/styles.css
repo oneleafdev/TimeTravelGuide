@@ -303,6 +303,10 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
 }
 .search input::placeholder { color: var(--muted); opacity: 1; }
 
+.pending-poems { margin-top: 32px; }
+.pending-poems summary { min-height: 44px; padding-block: 10px; font-weight: 770; cursor: pointer; }
+.pending-poems[open] summary { margin-bottom: 10px; }
+
 .poem-card {
   display: grid;
   gap: 15px;
@@ -393,6 +397,8 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+.novel-uses li + li { margin-top: 14px; }
+.novel-uses a { max-width: 100%; padding-block: 4px; line-height: 1.5; overflow-wrap: anywhere; }
 .poem-pagination { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 27px; }
 .poem-pagination .previous { justify-self: start; }
 .poem-pagination .next { grid-column: 2; justify-self: end; }

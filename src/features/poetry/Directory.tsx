@@ -1,7 +1,8 @@
 import { ArrowRight, Check, Search, X } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router';
 import { poetryModule } from '../library/model';
-import { dynasties, poems } from './model';
+import { dynasties, hasNovelEvidence, poems, verifiedPoems } from './model';
+import type { Poem } from './model';
 import { poemPath, poetryPath } from './paths';
 
 export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
@@ -14,6 +15,10 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
     (!dynasty || poem.dynasty === dynasty) &&
     [poem.title, poem.author, ...poem.lines].some((text) => text.toLowerCase().includes(needle)),
   );
+
+  const matchedVerified = filtered.filter(hasNovelEvidence);
+  const pending = filtered.filter((poem) => !hasNovelEvidence(poem));
+  const verifiedProgress = verifiedPoems.filter((poem) => memorized.has(poem.id)).length;
 
   function setSearch(text: string) {
     const nextParams = new URLSearchParams(params);
@@ -35,12 +40,12 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
     <article className="wrap page directory">
       <div className="directory-header">
         <div>
-          <p className="eyebrow">{poetryModule.volume} · {poems.length} 篇诗词</p>
+          <p className="eyebrow">{poetryModule.volume} · {verifiedPoems.length} 篇诗词</p>
           <h1>{poetryModule.title}</h1>
         </div>
         <div className="progress">
-          <label htmlFor="memorized-progress">已背会 <strong>{memorized.size} / {poems.length}</strong></label>
-          <progress id="memorized-progress" value={memorized.size} max={poems.length} />
+          <label htmlFor="memorized-progress">已背会 <strong>{verifiedProgress} / {verifiedPoems.length}</strong></label>
+          <progress id="memorized-progress" value={verifiedProgress} max={verifiedPoems.length} />
         </div>
       </div>
 
@@ -69,31 +74,20 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
           />
         </div>
       </div>
-      <p className="sr-only" role="status">找到 {filtered.length} 篇诗词</p>
+      <p className="sr-only" role="status">找到 {matchedVerified.length} 篇，另有 {pending.length} 篇待核</p>
 
       {filtered.length ? (
-        <ul className="poem-grid">
-          {filtered.map((poem) => (
-            <li key={poem.id}>
-              <Link
-                to={poemPath(poem.id)}
-                state={{ directoryLocation }}
-                className="poem-card"
-                data-dynasty={poem.dynasty}
-              >
-                <div className="poem-card-top">
-                  <span>{poem.dynasty} · {poem.author}</span>
-                  {memorized.has(poem.id) && <span className="learned"><Check size={14} aria-hidden="true" />已背会</span>}
-                </div>
-                <h2>{poem.title}</h2>
-                <div className="poem-card-bottom">
-                  <p>{poem.lines[0]}</p>
-                  <ArrowRight size={21} aria-hidden="true" />
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          {matchedVerified.length > 0 && (
+            <PoemGrid entries={matchedVerified} memorized={memorized} directoryLocation={directoryLocation} />
+          )}
+          {pending.length > 0 && (
+            <details className="pending-poems" open={Boolean(needle || dynasty) || undefined}>
+              <summary>待核篇目（{pending.length}）</summary>
+              <PoemGrid entries={pending} memorized={memorized} directoryLocation={directoryLocation} />
+            </details>
+          )}
+        </>
       ) : (
         <div className="empty-results">
           <p>没有找到符合条件的篇目。</p>
@@ -103,5 +97,36 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
         </div>
       )}
     </article>
+  );
+}
+
+function PoemGrid({ entries, memorized, directoryLocation }: {
+  entries: readonly Poem[];
+  memorized: ReadonlySet<string>;
+  directoryLocation: string;
+}) {
+  return (
+    <ul className="poem-grid">
+      {entries.map((poem) => (
+        <li key={poem.id}>
+          <Link
+            to={poemPath(poem.id)}
+            state={{ directoryLocation }}
+            className="poem-card"
+            data-dynasty={poem.dynasty}
+          >
+            <div className="poem-card-top">
+              <span>{poem.dynasty} · {poem.author}</span>
+              {memorized.has(poem.id) && <span className="learned"><Check size={14} aria-hidden="true" />已背会</span>}
+            </div>
+            <h2>{poem.title}</h2>
+            <div className="poem-card-bottom">
+              <p>{poem.lines[0]}</p>
+              <ArrowRight size={21} aria-hidden="true" />
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

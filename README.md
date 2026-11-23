@@ -4,9 +4,9 @@
 
 [打开穿越宝典](https://oneleafdev.github.io/TimeTravelGuide/) · [部署记录](https://github.com/oneleafdev/TimeTravelGuide/actions/workflows/pages.yml)
 
-## 第一卷 · 穿越必背古诗
+## 第一卷 · 穿越必背古诗词
 
-首版收录汉、唐、宋、清共 8 首古诗。目录可按朝代筛选，也能搜篇名、作者和诗句。每首包含原文、穿越情境、白话释义、背诵提示和参考资料。「练背诵」保留每句首字，点按即可核对原文。「标记背会」的进度保存在当前浏览器。
+主目录收录在多部独立穿越小说正文里出现的古诗词。每篇提供原文、白话释义、背诵提示和原章链接，简述小说如何用诗。尚未取得足够正文依据的旧篇单列在「待核篇目」，保留已发布链接和背诵状态。目录可按朝代筛选，也能搜篇名、作者和原文。「练背诵」保留每句首字，点按可核对；标记保存在当前浏览器。
 
 《穿越野外求生指南》在卷目中显示为筹备中。
 
@@ -39,7 +39,7 @@ npm run preview  # 预览构建产物
 ## 编辑内容
 
 - [`src/data/library.json`](src/data/library.json) 管卷目。使用稳定的英文短 ID，发布状态用 `available` 或 `planned`。
-- [`src/data/poetry.json`](src/data/poetry.json) 管古诗模块。编辑 `poems` 数组，每首填写 `id`、`title`、`dynasty`、`author`、`form`、`lines`、`scene`、`meaning`、`memoryCue` 和 `sources`。每个 `lines` 元素放一句并保留标点，`sources` 元素包含 `label` 和原始资料的 `url`。首页预览诗通过 `featuredPoemId` 选择。
+- [`src/data/poetry.json`](src/data/poetry.json) 管古诗模块。编辑 `poems` 数组，每首填写 `id`、`title`、`dynasty`、`author`、`form`、`lines`、`scene`、`meaning`、`memoryCue` 和 `sources`。每个 `lines` 元素放一句并保留标点，`sources` 元素包含 `label` 和原始资料的 `url`。经核对的篇目还应填写 `novelUses`，每项包含 `work`、`chapter`、`scene` 与原章 `url`，至少两部独立作品。首页预览诗通过 `featuredPoemId` 选择。
 - 各新模块各用一个 JSON，在 `src/features/` 里放独立的数据类型与页面。卷目只共享入口信息。例如野外求生模块可按主题、环境条件和步骤组织，古诗模块按篇目和诗句组织。
 - 原文、出处和存在异文的版本信息一同核对。资料链接在阅读页展示，页面内容由本地 JSON 提供。编辑已有条目时保留 ID，旧链接和学习进度依赖该 ID。
 
