@@ -32,10 +32,10 @@ svg { flex: none; vertical-align: middle; }
 ul, ol { padding: 0; list-style: none; }
 
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
-main:focus, section[tabindex="-1"]:focus { outline: none; }
+main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px; }
 ::selection { background: var(--yellow); color: var(--ink); }
 
-.wrap { width: min(1160px, calc(100% - 96px)); margin-inline: auto; }
+.wrap { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
 .sr-only, .skip-link:not(:focus) {
   clip-path: inset(50%);
   position: absolute;
@@ -202,7 +202,7 @@ main:focus, section[tabindex="-1"]:focus { outline: none; }
   font-weight: 800;
 }
 
-.hero-poem h2 {
+.hero-poem-title {
   font-size: clamp(28px, 4.1vw, 55px);
   line-height: 1.2;
   letter-spacing: -.045em;
@@ -212,7 +212,7 @@ main:focus, section[tabindex="-1"]:focus { outline: none; }
 }
 
 .hero-verses { display: grid; font: 700 clamp(18px, 2.3vw, 31px)/1.57 var(--font-verses); }
-.hero-bottom { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); }
+.hero-bottom { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); }
 
 @keyframes hero-enter {
   from { opacity: .3; translate: 0 9px; }
@@ -422,7 +422,7 @@ main:focus, section[tabindex="-1"]:focus { outline: none; }
   .hero-visual { padding: 23px; border-left: 0; border-top: var(--stroke); }
   .hero-poem { padding: 17px; box-shadow: 4px 4px var(--ink); }
   .hero-poem-heading { padding-bottom: 5px; }
-  .hero-poem h2 { margin: 11px 0 8px; }
+  .hero-poem-title { margin: 11px 0 8px; }
   .hero-verses { font-size: 19px; line-height: 1.5; }
   .hero-bottom { bottom: 9px; }
   .footer-inner { min-height: 65px; }

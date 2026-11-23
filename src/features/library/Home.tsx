@@ -7,9 +7,9 @@ import { modules, poetryModule, siteTitle } from './model';
 export function Home() {
   return (
     <>
-      <section className="hero section" aria-labelledby="hero-title">
+      <section className="hero section" aria-labelledby="hero-title" data-enter>
         <div className="wrap hero-grid">
-          <div className="hero-copy" data-enter>
+          <div className="hero-copy">
             <h1 id="hero-title">{siteTitle.slice(0, 2)}<span>{siteTitle.slice(2)}</span></h1>
             <p className="hero-subtitle">{poetryModule.title}</p>
             <Link className="button button-primary" to={poetryPath}>
@@ -22,7 +22,7 @@ export function Home() {
                 <span>{featuredPoem.dynasty} · {featuredPoem.author}</span>
                 <ArrowUpRight size={23} aria-hidden="true" />
               </div>
-              <h2>{featuredPoem.title}</h2>
+              <p className="hero-poem-title">{featuredPoem.title}</p>
               <div className="hero-verses">
                 {featuredPoem.lines.map((line) => <span key={line}>{line}</span>)}
               </div>
