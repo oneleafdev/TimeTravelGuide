@@ -36,7 +36,9 @@ export const verifiedPoems = catalogue.filter(hasNovelEvidence).sort((a, b) =>
 );
 export const pendingPoems = catalogue.filter((poem) => !hasNovelEvidence(poem));
 export const poems = [...verifiedPoems, ...pendingPoems];
-export const dynasties = [...new Set(catalogue.map((poem) => poem.dynasty))];
+const authorOrder = new Intl.Collator('zh-Hans-u-co-pinyin');
+export const authors = [...new Set(catalogue.map((poem) => poem.author))]
+  .sort(authorOrder.compare);
 
 export function findPoem(id: string | undefined) {
   return poems.find((poem) => poem.id === id);

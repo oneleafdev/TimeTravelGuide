@@ -279,17 +279,26 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
 .progress ::-moz-progress-bar { background: var(--blue); }
 
 .directory-tools { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 24px 0; }
-.filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.filter {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 6px 12px;
+.author-filter { position: relative; min-width: 150px; }
+.author-filter select {
+  width: 100%;
+  min-height: 46px;
+  padding: 6px 39px 6px 12px;
+  appearance: none;
   background: var(--cream);
   border: var(--stroke);
+  color: inherit;
+  font: inherit;
   font-weight: 770;
+  cursor: pointer;
 }
-.filter:hover { background: var(--green); }
-.filter[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+.author-filter svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
 .search { display: flex; align-items: center; gap: 8px; padding-inline: 12px; min-width: 0; border: var(--stroke); background: var(--cream); }
 .search:focus-within { outline: 3px solid var(--blue); outline-offset: 3px; }
 .search input {

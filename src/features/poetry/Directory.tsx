@@ -1,18 +1,18 @@
-import { ArrowRight, Check, Search, X } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, Search, X } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router';
 import { poetryModule } from '../library/model';
-import { dynasties, hasNovelEvidence, poems, verifiedPoems } from './model';
+import { authors, hasNovelEvidence, poems, verifiedPoems } from './model';
 import type { Poem } from './model';
 import { poemPath, poetryPath } from './paths';
 
 export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
   const [params, setParams] = useSearchParams();
   const query = params.get('q') ?? '';
-  const selectedDynasty = params.get('era');
-  const dynasty = dynasties.find((item) => item === selectedDynasty);
+  const selectedAuthor = params.get('author');
+  const author = authors.find((item) => item === selectedAuthor);
   const needle = query.trim().toLowerCase();
   const filtered = poems.filter((poem) =>
-    (!dynasty || poem.dynasty === dynasty) &&
+    (!author || poem.author === author) &&
     [poem.title, poem.author, ...poem.lines].some((text) => text.toLowerCase().includes(needle)),
   );
 
@@ -27,10 +27,11 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
     setParams(nextParams, { replace: true });
   }
 
-  function selectDynasty(era: string | undefined) {
+  function selectAuthor(name: string) {
     const nextParams = new URLSearchParams(params);
-    if (era) nextParams.set('era', era);
-    else nextParams.delete('era');
+    nextParams.delete('era');
+    if (name) nextParams.set('author', name);
+    else nextParams.delete('author');
     setParams(nextParams, { replace: true });
   }
 
@@ -50,18 +51,12 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
       </div>
 
       <div className="directory-tools">
-        <div className="filters" role="group" aria-label="按朝代筛选">
-          {[undefined, ...dynasties].map((era) => (
-            <button
-              className="filter"
-              key={era ?? 'all'}
-              type="button"
-              aria-pressed={dynasty === era}
-              onClick={() => selectDynasty(era)}
-            >
-              {era ?? '全部'}
-            </button>
-          ))}
+        <div className="author-filter">
+          <select aria-label="按作者筛选" value={author ?? ''} onChange={(event) => selectAuthor(event.target.value)}>
+            <option value="">全部作者</option>
+            {authors.map((name) => <option key={name} value={name}>{name}</option>)}
+          </select>
+          <ChevronDown size={18} aria-hidden="true" />
         </div>
         <div className="search">
           <Search size={19} aria-hidden="true" />
@@ -82,7 +77,7 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
             <PoemGrid entries={matchedVerified} memorized={memorized} directoryLocation={directoryLocation} />
           )}
           {pending.length > 0 && (
-            <details className="pending-poems" open={Boolean(needle || dynasty) || undefined}>
+            <details className="pending-poems" open={Boolean(needle || author) || undefined}>
               <summary>待核篇目（{pending.length}）</summary>
               <PoemGrid entries={pending} memorized={memorized} directoryLocation={directoryLocation} />
             </details>
