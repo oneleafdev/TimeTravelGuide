@@ -2,7 +2,8 @@ import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Compass } from 'lucide-r
 import { Link } from 'react-router';
 import { featuredPoem, verifiedPoems } from '../poetry/model';
 import { poemPath, poetryPath } from '../poetry/paths';
-import { modules, poetryModule, siteTitle } from './model';
+import { topics, wildernessPath } from '../wilderness/model';
+import { modules, poetryModule, siteTitle, wildernessModule } from './model';
 
 export function Home() {
   return (
@@ -49,6 +50,17 @@ export function Home() {
                     </span>
                     <div>
                       <span className="volume-meta">{module.volume} · {verifiedPoems.length} 篇</span>
+                      <h3>{module.title}</h3>
+                    </div>
+                  </Link>
+                ) : module.id === wildernessModule.id && module.status === 'available' ? (
+                  <Link to={wildernessPath} className="volume volume-wilderness">
+                    <span className="volume-top">
+                      <Compass size={29} aria-hidden="true" />
+                      <ArrowUpRight size={24} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <span className="volume-meta">{module.volume} · {topics.length} 篇</span>
                       <h3>{module.title}</h3>
                     </div>
                   </Link>

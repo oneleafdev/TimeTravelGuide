@@ -9,8 +9,9 @@
     },
     {
       "id": "wilderness",
-      "title": "穿越野外求生指南",
-      "status": "planned"
+      "title": "野外生存指南",
+      "volume": "第二卷",
+      "status": "available"
     }
   ]
 }

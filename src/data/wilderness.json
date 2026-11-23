@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "topics": [
+    {
+      "id": "desert-water",
+      "title": "沙漠找水",
+      "priority": "水不够时，先避热、减少活动并求援，别为了不确定的水源离开已知路线。",
+      "steps": [
+        {
+          "title": "先找阴凉",
+          "body": "停止赶路，清点现有饮水和设备。车辆抛锚时，若车旁安全就留在那里，车辆通常比徒步者更容易被发现。"
+        },
+        {
+          "title": "确认哪儿有水",
+          "body": "优先核对管理方最近的水源报告和离你最近的可靠补给。地图标着泉眼，不代表现在有水；如果没有可信水源，不要凭猜测往陌生山沟走。"
+        },
+        {
+          "title": "找到水再处理",
+          "body": "水清不代表能喝。来源不明的淡水按本卷「野外净水」处理；有油污或疑似化学污染，就换水源。"
+        },
+        {
+          "title": "认出热射病",
+          "body": "高温下出现意识混乱、说话异常、昏倒或抽搐，立即呼叫救援并给人快速降温，例如移到阴凉处、打湿皮肤并扇风；不要给意识不清的人灌水。"
+        }
+      ],
+      "avoid": [
+        "别在干河床或沟底停留，上游降雨也可能引发山洪。",
+        "别把岩凹、季节性泉眼当成一定有水的补给点。"
+      ],
+      "sources": [
+        {
+          "label": "美国国家公园管理局 · 大弯国家公园水源情况",
+          "url": "https://www.nps.gov/bibe/planyourvisit/water-in-the-chisos-mountains.htm"
+        },
+        {
+          "label": "美国国家公园管理局 · 死亡谷偏远道路安全",
+          "url": "https://www.nps.gov/deva/planyourvisit/backcountryroads.htm"
+        },
+        {
+          "label": "美国土地管理局 · 山洪安全",
+          "url": "https://www.blm.gov/flash-floods-tread-safely"
+        },
+        {
+          "label": "美国疾控中心 · 高温相关疾病与急救",
+          "url": "https://www.cdc.gov/niosh/heat-stress/about/illnesses.html"
+        }
+      ]
+    },
+    {
+      "id": "island-salt",
+      "title": "海岛晒盐",
+      "priority": "晒盐留下的是盐和其他残留物，不是淡水。真遇险，先求救和保障饮水，不把晒盐当取水。",
+      "steps": [
+        {
+          "title": "先看蒸发原理",
+          "body": "传统晒盐让海水在浅盐田里被日晒、风吹。水分离开后，盐水越来越浓，继续蒸发便会出现盐晶。"
+        },
+        {
+          "title": "用盐水观察结晶",
+          "body": "在家可用饮用水和食盐做演示：把少量盐水倒入干净浅盘，放在温暖通风处自然蒸发，观察盐晶出现。不需要取海水，也不用点火。"
+        },
+        {
+          "title": "分清取盐和取水",
+          "body": "取盐留的是盘里的结晶；蒸馏则把水蒸气收集起来，冷凝到另一处。只把海水煮到剩下一点，剩下的会更咸，不会变成淡水。"
+        }
+      ],
+      "avoid": [
+        "不要喝海水或蒸发后剩下的海水。",
+        "不要食用未经检验的海水结晶。结晶不是精制食用盐，蒸发不会自动去除污染物；自制蒸馏也不是可靠的求生补水计划。"
+      ],
+      "sources": [
+        {
+          "label": "美国地质调查局 · 蒸发与盐田",
+          "url": "https://www.usgs.gov/water-science-school/science/evaporation-and-water-cycle"
+        },
+        {
+          "label": "美国地质调查局 · 海水淡化",
+          "url": "https://www.usgs.gov/water-science-school/science/desalination"
+        },
+        {
+          "label": "美国国家海洋和大气管理局 · 为什么不能喝海水",
+          "url": "https://oceanservice.noaa.gov/facts/drinksw.html"
+        },
+        {
+          "label": "食品法典委员会 · 食用盐标准",
+          "url": "https://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%3A%2F%2Fworkspace.fao.org%2Fsites%2Fcodex%2FStandards%2FCXS+150-1985%2FCXS_150e.pdf"
+        }
+      ]
+    },
+    {
+      "id": "water-treatment",
+      "title": "野外净水",
+      "priority": "过滤不等于消毒。能用可信的饮用水就先用；找不到时，再处理来源相对可靠的淡水。",
+      "steps": [
+        {
+          "title": "先避开污染源",
+          "body": "避开有油膜、燃料味或疑似接触污水、工业污染的水。怀疑有毒化学物或放射性污染时，换水源，不指望煮沸或消毒补救。"
+        },
+        {
+          "title": "浑水先澄清",
+          "body": "让泥沙沉下去，倒出上层水，或用干净布预滤。这样只去掉可见颗粒，后面仍要消毒。"
+        },
+        {
+          "title": "优先煮沸",
+          "body": "水完全翻滚后计时，保持沸腾 1 分钟；海拔高于约 1,980 米时保持 3 分钟。冷却后放入干净带盖容器，别用装过生水的容器直接回装。"
+        },
+        {
+          "title": "不能煮时，先滤后消毒",
+          "body": "用标明可处理野外饮用水的滤器；多数普通滤器不能去除病毒。再选适用的饮水消毒产品，按标签的剂量、温度和等待时间处理。"
+        }
+      ],
+      "avoid": [
+        "布、沙和普通炭滤不能替代消毒。",
+        "不要用尝一口或看清不清来判断水是否安全。"
+      ],
+      "sources": [
+        {
+          "label": "美国疾控中心 · 户外饮用水处理",
+          "url": "https://www.cdc.gov/drinking-water/prevention/water-treatment-hiking-camping-traveling.html"
+        },
+        {
+          "label": "美国疾控中心 · 应急安全用水",
+          "url": "https://www.cdc.gov/water-emergency/about/index.html"
+        }
+      ]
+    },
+    {
+      "id": "campfire",
+      "title": "生火与灭火",
+      "priority": "只有在当地允许、天气适合、有人全程看守且有足够灭火用水时，才点火。",
+      "steps": [
+        {
+          "title": "先看禁火和风况",
+          "body": "有禁火令、风大、没有指定防火圈或灭火用水不足，就不点。选择指定火圈，远离帐篷、枯草和上方树枝，水和铲先放在手边。"
+        },
+        {
+          "title": "从小火开始",
+          "body": "用火柴或打火机点少量合规干燥引火物，先加细柴，稳定后再少量加大一点的柴。保持小火，全程由人看守。"
+        },
+        {
+          "title": "浇透、搅拌、再浇",
+          "body": "用水浇透木块和余烬，翻搅灰烬露出里面，再浇一次。用手背悬在上方检查，不触碰灰烬。还有热气就重复，等完全冷却再离开。"
+        }
+      ],
+      "avoid": [
+        "不用汽油、酒精等助燃剂。不要在帐篷或封闭空间用明火或炭火。",
+        "不要只用沙土覆盖，也不要因为看不到火苗就离开。"
+      ],
+      "sources": [
+        {
+          "label": "美国国家公园管理局 · 营火安全",
+          "url": "https://www.nps.gov/articles/campfires.htm"
+        },
+        {
+          "label": "美国林务局等 · Smokey Bear 营火指南",
+          "url": "https://smokeybear.com/campfire-safety"
+        }
+      ]
+    },
+    {
+      "id": "lost-and-rescue",
+      "title": "迷路与求救",
+      "priority": "一旦不认路，先停下来。只有确认原路且能安全返回时，才折返。",
+      "steps": [
+        {
+          "title": "先报位置",
+          "body": "能联络时呼叫当地救援，发出 GPS 坐标、最后经过的地标、人数和伤情。保持电话可接听，避免无目的地四处走。"
+        },
+        {
+          "title": "报位后留在安全处",
+          "body": "救援按你的位置找人。除非有山洪、落石等迫近危险，不要擅自移动；必须撤离时尽可能报告新的位置或方向。"
+        },
+        {
+          "title": "没信号也能发信号",
+          "body": "待在安全又较容易被看见的地方，用口哨、头灯或醒目的布料发信号。先保暖或避热，节省体力。"
+        }
+      ],
+      "avoid": [
+        "不要凭感觉抄近路、顺沟下探或强行涉水。",
+        "不要为了求救在禁火或干燥大风时点信号火。"
+      ],
+      "sources": [
+        {
+          "label": "美国国家公园管理局 · 户外应急计划",
+          "url": "https://www.nps.gov/articles/gtgemergencyplan.htm"
+        }
+      ]
+    },
+    {
+      "id": "coastal-shelter",
+      "title": "海岸避潮扎营",
+      "priority": "先找高处再搭营，别把退潮露出的沙地当作整晚都安全。",
+      "steps": [
+        {
+          "title": "看潮汐和天气",
+          "body": "能取得预报时，查当地潮汐表、风浪预警和路线。海岬和礁石路可能只在低潮时通行；不清楚能否安全通过，就留在安全处。"
+        },
+        {
+          "title": "给浪留足距离",
+          "body": "优先选允许停留、明显高于高潮范围的稳定地面，避开浪能打到的岸段、漂木、崖壁落石区及低凹地。风浪会越过平常的水边。"
+        },
+        {
+          "title": "留一条撤向高处的路",
+          "body": "天黑前确认如何走到更高处，装备放在伸手能拿到的位置。水线异常逼近时，先往安全高处走，不停下来抢物品。"
+        }
+      ],
+      "avoid": [
+        "涨潮时不绕海岬、不在浪边等，不攀附可能被浪推动的漂木。",
+        "沿海有海啸预警，或感到强烈、持续的地震，应立即往高处或内陆撤离，不等看见海浪。"
+      ],
+      "sources": [
+        {
+          "label": "美国国家公园管理局 · 潮汐与安全",
+          "url": "https://www.nps.gov/olym/planyourvisit/tides-and-your-safety.htm"
+        },
+        {
+          "label": "美国国家公园管理局 · 奥林匹克荒野海岸",
+          "url": "https://www.nps.gov/olym/planyourvisit/wilderness-coast.htm"
+        },
+        {
+          "label": "美国国家气象局 · 海啸安全",
+          "url": "https://www.weather.gov/safety/tsunami"
+        }
+      ]
+    }
+  ]
+}

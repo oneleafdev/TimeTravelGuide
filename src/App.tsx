@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react';
 import { ArrowUpRight, BookOpen, Sparkles } from 'lucide-react';
 import { Link, NavLink, Route, Routes, matchPath, useLocation } from 'react-router';
 import { Home, MissingPage } from './features/library/Home';
-import { poetryModule, siteTitle } from './features/library/model';
+import { poetryModule, siteTitle, wildernessModule } from './features/library/model';
 import { Directory } from './features/poetry/Directory';
 import { Reader } from './features/poetry/Reader';
 import { featuredPoem, findPoem, verifiedPoems } from './features/poetry/model';
 import { poemPath, poetryPath } from './features/poetry/paths';
 import { useProgress } from './features/poetry/progress';
+import { WildernessDirectory, WildernessReader } from './features/wilderness/Guide';
+import { findTopic, topicRoute, wildernessPath } from './features/wilderness/model';
 
 const readerPath = `${poetryPath}/:poemId`;
 
@@ -18,11 +20,11 @@ export function App() {
   const practicePoem = !memorized.has(featuredPoem.id) ? featuredPoem
     : verifiedPoems.find((poem) => !memorized.has(poem.id)) ?? featuredPoem;
   const section = pathname === '/' ? new URLSearchParams(search).get('section') : null;
-  const viewTitle = pathname === '/'
-    ? null
-    : pathname === poetryPath
-      ? poetryModule.title
-      : findPoem(matchPath(readerPath, pathname)?.params.poemId)?.title ?? '页面未找到';
+  const titles: Record<string, string> = { [poetryPath]: poetryModule.title, [wildernessPath]: wildernessModule.title };
+  const viewTitle = pathname === '/' ? null : titles[pathname]
+    ?? findPoem(matchPath(readerPath, pathname)?.params.poemId)?.title
+    ?? findTopic(matchPath(topicRoute, pathname)?.params.topicId)?.title
+    ?? '页面未找到';
 
   useEffect(() => {
     document.title = viewTitle ? `${viewTitle} · ${siteTitle}` : siteTitle;
@@ -78,6 +80,8 @@ export function App() {
           <Route path="/" element={<Home />} />
           <Route path={poetryPath} element={<Directory memorized={memorized} />} />
           <Route path={readerPath} element={<Reader memorized={memorized} onToggle={toggleMemorized} />} />
+          <Route path={wildernessPath} element={<WildernessDirectory />} />
+          <Route path={topicRoute} element={<WildernessReader />} />
           <Route path="*" element={<MissingPage />} />
         </Routes>
       </main>

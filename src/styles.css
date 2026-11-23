@@ -122,10 +122,10 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
 
 @media (hover: hover) {
   .button:hover { transform: translate(-1px, -2px); box-shadow: 4px 5px var(--ink); }
-  .poem-card:hover, .volume-poetry:hover { transform: translateY(-2px); box-shadow: 4px 6px var(--ink); }
+  .poem-card:hover, .volume-poetry:hover, .volume-wilderness:hover { transform: translateY(-2px); box-shadow: 4px 6px var(--ink); }
   .hero-poem:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px var(--ink); }
 }
-.button:active, .hero-poem:active, .poem-card:active, .volume-poetry:active {
+.button:active, .hero-poem:active, .poem-card:active, .volume-poetry:active, .volume-wilderness:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px var(--ink);
 }
@@ -232,7 +232,9 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
   padding: clamp(20px, 4vw, 44px);
   border: var(--stroke);
 }
-.volume-poetry { background: var(--red); box-shadow: 3px 4px var(--ink); transition: transform 150ms ease, box-shadow 150ms ease; }
+.volume-poetry, .volume-wilderness { box-shadow: 3px 4px var(--ink); transition: transform 150ms ease, box-shadow 150ms ease; }
+.volume-poetry { background: var(--red); }
+.volume-wilderness { background: var(--yellow); }
 .volume-planned { background: var(--cream); }
 .volume-top { display: flex; align-items: center; justify-content: space-between; }
 .volume-meta { font-size: 14px; font-weight: 760; }
@@ -470,3 +472,23 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
     transition: none !important;
   }
 }
+
+
+.wilderness-grid { margin-top: 28px; }
+.guide-card { min-height: 134px; }
+.guide-card h2 { align-self: end; }
+.guide-card[data-topic="desert-water"], .guide-heading[data-topic="desert-water"] { background: #ffe99a; }
+.guide-card[data-topic="island-salt"], .guide-heading[data-topic="island-salt"] { background: #dce6ff; }
+.guide-card[data-topic="water-treatment"], .guide-heading[data-topic="water-treatment"] { background: #d2eee7; }
+.guide-card[data-topic="campfire"], .guide-heading[data-topic="campfire"] { background: #ffd8ca; }
+.guide-card[data-topic="lost-and-rescue"], .guide-heading[data-topic="lost-and-rescue"] { background: #ffe1a5; }
+.guide-card[data-topic="coastal-shelter"], .guide-heading[data-topic="coastal-shelter"] { background: var(--green); }
+.guide-heading { border: var(--stroke); padding: clamp(20px, 5vw, 56px); box-shadow: 3px 4px var(--ink); }
+.guide-heading h1 { margin-top: 12px; }
+.guide-heading p { margin-top: 15px; max-width: 42em; font-weight: 760; font-size: clamp(16px, 2.1vw, 22px); line-height: 1.55; }
+.guide-body { margin-top: 24px; align-items: start; }
+.guide-steps li + li { margin-top: 20px; padding-top: 20px; border-top: 1px solid #bcb39f; }
+.guide-cautions { background: #fff1c0; }
+.guide-cautions ul { padding-left: 1.2em; list-style: disc; line-height: 1.7; }
+.guide-cautions li + li { margin-top: 7px; }
+.wilderness .sources a { max-width: 100%; overflow-wrap: anywhere; }

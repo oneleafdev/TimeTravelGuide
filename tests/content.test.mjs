@@ -65,3 +65,23 @@ test('main catalogue requires distinct works and chapter links', () => {
     assert.equal(chapterLinks.size, novelUses.length, `${id} repeats a chapter link`);
   }
 });
+
+test('the wilderness volume has complete topics and authority links', async () => {
+  const { default: wilderness } = await import('../src/data/wilderness.json', { with: { type: 'json' } });
+  assert.equal(library.modules.find(({ id }) => id === 'wilderness')?.status, 'available');
+  const ids = checkIds(wilderness.topics);
+  for (const id of ['desert-water', 'island-salt', 'water-treatment', 'campfire']) assert.ok(ids.includes(id));
+  for (const topic of wilderness.topics) {
+    assert.ok(topic.title.trim() && topic.priority.trim());
+    assert.ok(topic.steps.length >= 2 && topic.avoid.length > 0);
+    for (const { title, body } of topic.steps) assert.ok(title.trim() && body.trim());
+    assert.ok(topic.sources.length > 0);
+    assert.equal(new Set(topic.sources.map(({ url }) => url)).size, topic.sources.length);
+    for (const { label, url } of topic.sources) {
+      assert.ok(label.trim());
+      const source = new URL(url);
+      assert.equal(source.protocol, 'https:');
+      assert.notEqual(source.pathname, '/');
+    }
+  }
+});
