@@ -1,0 +1,16 @@
+{
+  "title": "穿越宝典",
+  "modules": [
+    {
+      "id": "poetry",
+      "title": "穿越必背古诗",
+      "volume": "第一卷",
+      "status": "available"
+    },
+    {
+      "id": "wilderness",
+      "title": "穿越野外求生指南",
+      "status": "planned"
+    }
+  ]
+}
