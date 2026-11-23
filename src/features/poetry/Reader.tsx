@@ -19,7 +19,7 @@ function Verses({ poem, recite }: { poem: Poem; recite: boolean }) {
   }
 
   return (
-    <ol className="verses" aria-label={recite ? '逐句背诵' : '古诗原文'}>
+    <ol className="verses" aria-label={recite ? '逐句背诵' : '诗词原文'}>
       {poem.lines.map((line, index) => {
         const visible = revealed.has(index);
         const [first, ...rest] = Array.from(line);
@@ -73,7 +73,7 @@ export function Reader({
   return (
     <article className="wrap page reader">
       <nav className="reader-breadcrumb" aria-label="当前卷">
-        <Link className="text-link" to={directoryLocation}><ArrowLeft size={18} /> 古诗目录</Link>
+        <Link className="text-link" to={directoryLocation}><ArrowLeft size={18} /> 诗词目录</Link>
         <span>{index + 1} / {poems.length}</span>
       </nav>
 
@@ -106,7 +106,7 @@ export function Reader({
                 <p>{poem.scene}</p>
               </section>
               <section className="note-block">
-                <h2>诗意</h2>
+                <h2>释义</h2>
                 <p>{poem.meaning}</p>
               </section>
               <section className="note-block">
@@ -130,7 +130,7 @@ export function Reader({
         </div>
       </div>
 
-      <nav className="poem-pagination" aria-label="切换古诗">
+      <nav className="poem-pagination" aria-label="切换篇目">
         {previous && (
           <Link className="button previous" to={poemPath(previous.id, recite)} state={returnState}>
             <ArrowLeft size={18} aria-hidden="true" /> {previous.title}

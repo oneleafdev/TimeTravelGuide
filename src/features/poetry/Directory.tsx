@@ -35,7 +35,7 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
     <article className="wrap page directory">
       <div className="directory-header">
         <div>
-          <p className="eyebrow">{poetryModule.volume} · {poems.length} 首古诗</p>
+          <p className="eyebrow">{poetryModule.volume} · {poems.length} 篇诗词</p>
           <h1>{poetryModule.title}</h1>
         </div>
         <div className="progress">
@@ -61,15 +61,15 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
         <div className="search">
           <Search size={19} aria-hidden="true" />
           <input
-            aria-label="搜索篇名、作者或诗句"
+            aria-label="搜索篇名、作者或原文"
             type="search"
             value={query}
-            placeholder="搜篇名、作者或诗句"
+            placeholder="搜篇名、作者或原文"
             onChange={(event) => setSearch(event.target.value)}
           />
         </div>
       </div>
-      <p className="sr-only" role="status">找到 {filtered.length} 首古诗</p>
+      <p className="sr-only" role="status">找到 {filtered.length} 篇诗词</p>
 
       {filtered.length ? (
         <ul className="poem-grid">
@@ -96,7 +96,7 @@ export function Directory({ memorized }: { memorized: ReadonlySet<string> }) {
         </ul>
       ) : (
         <div className="empty-results">
-          <p>没有找到符合条件的诗。</p>
+          <p>没有找到符合条件的篇目。</p>
           <button className="button" onClick={() => setParams({}, { replace: true })} type="button">
             <X size={18} aria-hidden="true" /> 清除筛选
           </button>
