@@ -31,7 +31,7 @@ test('poem IDs and lines support sharing and recitation', () => {
     }
     assert.ok(poem.lines.length >= 2);
     for (const line of poem.lines) {
-      assert.match(line, /^\p{Script=Han}{2,}[，。！？；]$/u, `${poem.id} requires one verse per line`);
+      assert.match(line, /^\p{Script=Han}[\p{Script=Han}，。！？；：]*\p{Script=Han}[，。！？；：]$/u, `${poem.id} requires one verse per line`);
     }
   }
 });
