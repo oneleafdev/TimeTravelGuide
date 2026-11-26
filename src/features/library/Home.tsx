@@ -1,15 +1,17 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Calculator, Compass } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Calculator, Compass, Grape } from 'lucide-react';
 import { Link } from 'react-router';
 import { accountingPath, methods } from '../accounting/model';
+import { brewingPath, brewingTopics } from '../brewing/model';
 import { featuredPoem, verifiedPoems } from '../poetry/model';
 import { poemPath, poetryPath } from '../poetry/paths';
 import { topics, wildernessPath } from '../wilderness/model';
-import { accountingModule, modules, poetryModule, siteTitle, wildernessModule } from './model';
+import { accountingModule, brewingModule, modules, poetryModule, siteTitle, wildernessModule } from './model';
 
 const volumeEntries: Record<string, { path: string; icon: typeof BookOpen; count: string }> = {
   [poetryModule.id]: { path: poetryPath, icon: BookOpen, count: `${verifiedPoems.length} 篇` },
   [wildernessModule.id]: { path: wildernessPath, icon: Compass, count: `${topics.length} 篇` },
   [accountingModule.id]: { path: accountingPath, icon: Calculator, count: `${methods.length} 种方法` },
+  [brewingModule.id]: { path: brewingPath, icon: Grape, count: `${brewingTopics.length} 篇` },
 };
 
 export function Home() {

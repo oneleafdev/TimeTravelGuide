@@ -114,3 +114,19 @@ test('checkout calculates change, exact payment and amount still owed', async ()
   }
   assert.equal(calculateCheckout('17', '0', '150'), null);
 });
+
+test('brewing compares grape wine and Wuliangye with complete stages and sources', async () => {
+  const { default: brewing } = await import('../src/data/brewing.json', { with: { type: 'json' } });
+  assert.equal(library.modules.find(({ id }) => id === 'brewing')?.status, 'available');
+  assert.deepEqual(checkIds(brewing.topics), ['grape-wine', 'wuliangye']);
+  assert.deepEqual(brewing.topics.map(({ type }) => type), ['发酵酒', '浓香型蒸馏白酒']);
+  for (const topic of brewing.topics) {
+    assert.ok(topic.title.trim());
+    assert.ok(topic.steps.length >= 3 && topic.sources.length >= 2);
+    for (const { title, body } of [...topic.steps, topic.detail]) assert.ok(title.trim() && body.trim());
+    for (const { label, url } of topic.sources) {
+      assert.ok(label.trim());
+      assert.equal(new URL(url).protocol, 'https:');
+    }
+  }
+});

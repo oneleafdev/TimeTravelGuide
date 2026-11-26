@@ -1,0 +1,25 @@
+.brewing-heading { background: #f4e2f6; }
+.brewing-heading h1 { margin-top: 0; }
+.brewing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.brewing-card { border: var(--stroke); background: var(--cream); box-shadow: 3px 4px var(--ink); min-width: 0; }
+.brewing-card-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 15px 19px; border-bottom: var(--stroke); background: #ffe99a; }
+.brewing-card[data-drink="grape-wine"] .brewing-card-heading { background: #f4e2f6; }
+.brewing-card-heading h2 { font-size: clamp(25px, 4vw, 34px); font-weight: 900; }
+.brewing-card-heading span { margin-inline-start: auto; font-size: 14px; font-weight: 750; }
+.brewing-steps { padding: 18px 22px 18px 43px; list-style: decimal; }
+.brewing-steps li + li { margin-top: 15px; }
+.brewing-steps li::marker { font-weight: 850; }
+.brewing-card h3 { font-size: 18px; font-weight: 850; margin-bottom: 5px; }
+.brewing-card p, .brewing-safety { line-height: 1.7; }
+.brewing-detail { margin: 0 18px; padding: 12px 14px; border: 1px solid var(--ink); background: #fff1c0; }
+.brewing-card[data-drink="grape-wine"] .brewing-detail { background: #f4e2f6; }
+.brewing-sources { padding-inline: 18px; }
+.brewing-sources[open] { padding-bottom: 12px; }
+.brewing-sources summary { min-height: 44px; line-height: 44px; cursor: pointer; font-weight: 750; }
+.brewing-sources a { max-width: 100%; overflow-wrap: anywhere; }
+.brewing-sources svg { flex: none; }
+.brewing-safety { margin-top: 20px; }
+
+@media (max-width: 640px) {
+  .brewing-grid { grid-template-columns: minmax(0, 1fr); }
+}

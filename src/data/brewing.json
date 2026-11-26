@@ -1,0 +1,41 @@
+{
+  "topics": [
+    {
+      "id": "grape-wine",
+      "title": "葡萄酒",
+      "type": "发酵酒",
+      "steps": [
+        { "title": "葡萄或葡萄汁", "body": "成熟葡萄里已有葡萄糖和果糖，不必像粮食那样先把大量淀粉分解成糖。" },
+        { "title": "酵母发酵", "body": "酵母把糖转成乙醇和二氧化碳。普通葡萄酒的酒精来自这一步，不靠蒸馏提高酒精浓度。" },
+        { "title": "整理酒液", "body": "发酵后的酒液可从沉淀中分离，再根据风格选择澄清、陈酿或装瓶。橡木桶不是必经步骤。" }
+      ],
+      "detail": {
+        "title": "红葡萄酒和白葡萄酒，区别在哪？",
+        "body": "红葡萄酒通常带皮发酵，再分离皮渣，葡萄皮带来颜色和一部分单宁。白葡萄酒通常先压榨取汁，再把汁拿去发酵。也有带皮浸渍的白葡萄酒，所以这不是绝对规则。"
+      },
+      "sources": [
+        { "label": "国际葡萄与葡萄酒组织（OIV）：葡萄酒的定义", "url": "https://www.oiv.int/standards/international-code-of-oenological-practices/part-i-definitions/wines/basic-definition" },
+        { "label": "OIV：葡萄压榨与浸渍工艺", "url": "https://www.oiv.int/standards/international-code-of-oenological-practices/part-ii-oenological-treatments-and-practices/grapes" },
+        { "label": "OIV：带皮浸渍的白葡萄酒", "url": "https://www.oiv.int/standards/international-code-of-oenological-practices/part-i-definitions/special-wines/white-wine-with-maceration" }
+      ]
+    },
+    {
+      "id": "wuliangye",
+      "title": "五粮液",
+      "type": "浓香型蒸馏白酒",
+      "steps": [
+        { "title": "五粮与大曲", "body": "五粮指高粱、大米、糯米、小麦和玉米。宜宾五粮液的传统工艺使用以小麦制作的「包包曲」。曲中微生物产生的酶能把粮食淀粉分解成可发酵的糖。" },
+        { "title": "泥窖固态发酵", "body": "粮料和酒醅以湿润固体的形态在泥窖里发酵，不像葡萄汁那样主要在液体里发酵。酵母产酒精，窖内其他微生物也参与形成风味。" },
+        { "title": "蒸馏、贮存与勾调", "body": "蒸馏把酒醅中已有的乙醇和部分挥发性香味成分带入蒸气，冷凝后得到原酒。原酒按品质贮存，之后用不同特征的基酒组合，形成稳定的酒体。" }
+      ],
+      "detail": {
+        "title": "加齐五种粮，就能酿出五粮液？",
+        "body": "不能。五粮液是宜宾的特定品牌，不是所有五粮酒的通称。粮食以外，大曲、泥窖微生物、发酵过程以及贮存和勾调都影响成酒。"
+      },
+      "sources": [
+        { "label": "中国非物质文化遗产网：五粮液酒传统酿造技艺", "url": "https://www.ihchina.cn/art/detail/id/14597.html" },
+        { "label": "商务部老字号数字博物馆：五粮液的原料与工艺", "url": "https://lzhbwg.mofcom.gov.cn/edi_ecms_web_front/thb/detail/39cae008d2014594aefaa7d5fba1a5a3" }
+      ]
+    }
+  ]
+}

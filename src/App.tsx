@@ -3,8 +3,10 @@ import { ArrowUpRight, BookOpen, Sparkles } from 'lucide-react';
 import { Link, NavLink, Route, Routes, matchPath, useLocation } from 'react-router';
 import { AccountingGuide } from './features/accounting/Guide';
 import { accountingPath } from './features/accounting/model';
+import { BrewingGuide } from './features/brewing/Guide';
+import { brewingPath } from './features/brewing/model';
 import { Home, MissingPage } from './features/library/Home';
-import { accountingModule, poetryModule, siteTitle, wildernessModule } from './features/library/model';
+import { accountingModule, brewingModule, poetryModule, siteTitle, wildernessModule } from './features/library/model';
 import { Directory } from './features/poetry/Directory';
 import { Reader } from './features/poetry/Reader';
 import { featuredPoem, findPoem, verifiedPoems } from './features/poetry/model';
@@ -26,6 +28,7 @@ export function App() {
     [poetryPath]: poetryModule.title,
     [wildernessPath]: wildernessModule.title,
     [accountingPath]: accountingModule.title,
+    [brewingPath]: brewingModule.title,
   };
   const viewTitle = pathname === '/' ? null : titles[pathname]
     ?? findPoem(matchPath(readerPath, pathname)?.params.poemId)?.title
@@ -89,6 +92,7 @@ export function App() {
           <Route path={wildernessPath} element={<WildernessDirectory />} />
           <Route path={topicRoute} element={<WildernessReader />} />
           <Route path={accountingPath} element={<AccountingGuide />} />
+          <Route path={brewingPath} element={<BrewingGuide />} />
           <Route path="*" element={<MissingPage />} />
         </Routes>
       </main>

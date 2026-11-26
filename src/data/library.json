@@ -18,6 +18,12 @@
       "title": "算账指南",
       "volume": "第三卷",
       "status": "available"
+    },
+    {
+      "id": "brewing",
+      "title": "酿酒科普",
+      "volume": "第四卷",
+      "status": "available"
     }
   ]
 }
