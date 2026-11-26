@@ -1,9 +1,16 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Compass } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Calculator, Compass } from 'lucide-react';
 import { Link } from 'react-router';
+import { accountingPath, methods } from '../accounting/model';
 import { featuredPoem, verifiedPoems } from '../poetry/model';
 import { poemPath, poetryPath } from '../poetry/paths';
 import { topics, wildernessPath } from '../wilderness/model';
-import { modules, poetryModule, siteTitle, wildernessModule } from './model';
+import { accountingModule, modules, poetryModule, siteTitle, wildernessModule } from './model';
+
+const volumeEntries: Record<string, { path: string; icon: typeof BookOpen; count: string }> = {
+  [poetryModule.id]: { path: poetryPath, icon: BookOpen, count: `${verifiedPoems.length} 篇` },
+  [wildernessModule.id]: { path: wildernessPath, icon: Compass, count: `${topics.length} 篇` },
+  [accountingModule.id]: { path: accountingPath, icon: Calculator, count: `${methods.length} 种方法` },
+};
 
 export function Home() {
   return (
@@ -40,41 +47,34 @@ export function Home() {
         <div className="wrap">
           <h2 id="library-title" className="section-title">卷目</h2>
           <ul className="volume-grid">
-            {modules.map((module) => (
-              <li key={module.id}>
-                {module.id === poetryModule.id && module.status === 'available' ? (
-                  <Link to={poetryPath} className="volume volume-poetry">
+            {modules.map((module) => {
+              const entry = volumeEntries[module.id];
+              if (module.status !== 'available' || !entry) {
+                return (
+                  <li key={module.id}>
+                    <article className="volume volume-planned">
+                      <span className="volume-top"><Compass size={29} aria-hidden="true" /></span>
+                      <div><span className="volume-meta">筹备中</span><h3>{module.title}</h3></div>
+                    </article>
+                  </li>
+                );
+              }
+              const { path, icon: Icon, count } = entry;
+              return (
+                <li key={module.id}>
+                  <Link to={path} className={`volume volume-${module.id}`}>
                     <span className="volume-top">
-                      <BookOpen size={29} aria-hidden="true" />
+                      <Icon size={29} aria-hidden="true" />
                       <ArrowUpRight size={24} aria-hidden="true" />
                     </span>
                     <div>
-                      <span className="volume-meta">{module.volume} · {verifiedPoems.length} 篇</span>
+                      <span className="volume-meta">{module.volume} · {count}</span>
                       <h3>{module.title}</h3>
                     </div>
                   </Link>
-                ) : module.id === wildernessModule.id && module.status === 'available' ? (
-                  <Link to={wildernessPath} className="volume volume-wilderness">
-                    <span className="volume-top">
-                      <Compass size={29} aria-hidden="true" />
-                      <ArrowUpRight size={24} aria-hidden="true" />
-                    </span>
-                    <div>
-                      <span className="volume-meta">{module.volume} · {topics.length} 篇</span>
-                      <h3>{module.title}</h3>
-                    </div>
-                  </Link>
-                ) : (
-                  <article className="volume volume-planned">
-                    <span className="volume-top"><Compass size={29} aria-hidden="true" /></span>
-                    <div>
-                      <span className="volume-meta">筹备中</span>
-                      <h3>{module.title}</h3>
-                    </div>
-                  </article>
-                )}
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>

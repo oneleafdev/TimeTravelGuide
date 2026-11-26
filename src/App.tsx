@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, BookOpen, Sparkles } from 'lucide-react';
 import { Link, NavLink, Route, Routes, matchPath, useLocation } from 'react-router';
+import { AccountingGuide } from './features/accounting/Guide';
+import { accountingPath } from './features/accounting/model';
 import { Home, MissingPage } from './features/library/Home';
-import { poetryModule, siteTitle, wildernessModule } from './features/library/model';
+import { accountingModule, poetryModule, siteTitle, wildernessModule } from './features/library/model';
 import { Directory } from './features/poetry/Directory';
 import { Reader } from './features/poetry/Reader';
 import { featuredPoem, findPoem, verifiedPoems } from './features/poetry/model';
@@ -20,7 +22,11 @@ export function App() {
   const practicePoem = !memorized.has(featuredPoem.id) ? featuredPoem
     : verifiedPoems.find((poem) => !memorized.has(poem.id)) ?? featuredPoem;
   const section = pathname === '/' ? new URLSearchParams(search).get('section') : null;
-  const titles: Record<string, string> = { [poetryPath]: poetryModule.title, [wildernessPath]: wildernessModule.title };
+  const titles: Record<string, string> = {
+    [poetryPath]: poetryModule.title,
+    [wildernessPath]: wildernessModule.title,
+    [accountingPath]: accountingModule.title,
+  };
   const viewTitle = pathname === '/' ? null : titles[pathname]
     ?? findPoem(matchPath(readerPath, pathname)?.params.poemId)?.title
     ?? findTopic(matchPath(topicRoute, pathname)?.params.topicId)?.title
@@ -82,6 +88,7 @@ export function App() {
           <Route path={readerPath} element={<Reader memorized={memorized} onToggle={toggleMemorized} />} />
           <Route path={wildernessPath} element={<WildernessDirectory />} />
           <Route path={topicRoute} element={<WildernessReader />} />
+          <Route path={accountingPath} element={<AccountingGuide />} />
           <Route path="*" element={<MissingPage />} />
         </Routes>
       </main>

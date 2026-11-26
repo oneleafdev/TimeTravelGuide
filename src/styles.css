@@ -122,10 +122,10 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
 
 @media (hover: hover) {
   .button:hover { transform: translate(-1px, -2px); box-shadow: 4px 5px var(--ink); }
-  .poem-card:hover, .volume-poetry:hover, .volume-wilderness:hover { transform: translateY(-2px); box-shadow: 4px 6px var(--ink); }
+  .poem-card:hover, .volume-poetry:hover, .volume-wilderness:hover, .volume-accounting:hover { transform: translateY(-2px); box-shadow: 4px 6px var(--ink); }
   .hero-poem:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px var(--ink); }
 }
-.button:active, .hero-poem:active, .poem-card:active, .volume-poetry:active, .volume-wilderness:active {
+.button:active, .hero-poem:active, .poem-card:active, .volume-poetry:active, .volume-wilderness:active, .volume-accounting:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px var(--ink);
 }
@@ -232,9 +232,10 @@ main:focus-visible, section[tabindex="-1"]:focus-visible { outline-offset: -3px;
   padding: clamp(20px, 4vw, 44px);
   border: var(--stroke);
 }
-.volume-poetry, .volume-wilderness { box-shadow: 3px 4px var(--ink); transition: transform 150ms ease, box-shadow 150ms ease; }
+.volume-poetry, .volume-wilderness, .volume-accounting { box-shadow: 3px 4px var(--ink); transition: transform 150ms ease, box-shadow 150ms ease; }
 .volume-poetry { background: var(--red); }
 .volume-wilderness { background: var(--yellow); }
+.volume-accounting { background: #dce6ff; }
 .volume-planned { background: var(--cream); }
 .volume-top { display: flex; align-items: center; justify-content: space-between; }
 .volume-meta { font-size: 14px; font-weight: 760; }

@@ -12,6 +12,12 @@
       "title": "野外生存指南",
       "volume": "第二卷",
       "status": "available"
+    },
+    {
+      "id": "accounting",
+      "title": "算账指南",
+      "volume": "第三卷",
+      "status": "available"
     }
   ]
 }

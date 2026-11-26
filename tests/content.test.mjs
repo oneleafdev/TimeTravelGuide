@@ -85,3 +85,32 @@ test('the wilderness volume has complete topics and authority links', async () =
     }
   }
 });
+
+test('the accounting volume has six complete methods and historical sources', async () => {
+  const { default: accounting } = await import('../src/data/accounting.json', { with: { type: 'json' } });
+  assert.equal(library.modules.find(({ id }) => id === 'accounting')?.status, 'available');
+  assert.deepEqual(checkIds(accounting.methods), ['checkout', 'unit-price', 'split', 'credit', 'daily-close', 'profit']);
+  for (const method of accounting.methods) {
+    for (const field of ['title', 'formula', 'method', 'example']) assert.ok(method[field].trim());
+  }
+  assert.ok(accounting.sources.length >= 2);
+  for (const { label, url } of accounting.sources) {
+    assert.ok(label.trim());
+    assert.equal(new URL(url).protocol, 'https:');
+  }
+});
+
+test('checkout calculates change, exact payment and amount still owed', async () => {
+  const { calculateCheckout } = await import('../src/features/accounting/model.ts');
+  assert.deepEqual(calculateCheckout('17', '6', '150'), { due: 102, difference: 48 });
+  assert.deepEqual(calculateCheckout('17', '6', '102'), { due: 102, difference: 0 });
+  assert.deepEqual(calculateCheckout('17', '6', '100'), { due: 102, difference: -2 });
+  assert.deepEqual(calculateCheckout('0', '1', '0'), { due: 0, difference: 0 });
+  assert.deepEqual(calculateCheckout('1000000', '1000000', '0'), { due: 1e12, difference: -1e12 });
+  for (const invalid of ['', '-1', '1.5', '1e2', '1000001', '1文']) {
+    assert.equal(calculateCheckout(invalid, '6', '150'), null);
+    assert.equal(calculateCheckout('17', invalid, '150'), null);
+    assert.equal(calculateCheckout('17', '6', invalid), null);
+  }
+  assert.equal(calculateCheckout('17', '0', '150'), null);
+});
